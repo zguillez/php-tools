@@ -16,11 +16,11 @@
     public function get($url, $data = null, $isJson = false)
     {
       if($data) {
-        foreach($data as $item => $value) {
+        foreach($data as $key => $value) {
           if(strpos($url, '?') === false) {
-            $url .= '?' . $item . '=' . urlencode($value);
+            $url .= '?' . $key . '=' . urlencode($value);
           } else {
-            $url .= '&' . $item . '=' . urlencode($value);
+            $url .= '&' . $key . '=' . urlencode($value);
           }
         }
       }
@@ -28,6 +28,29 @@
       curl_setopt($handler, CURLOPT_URL, $url);
       curl_setopt($handler, CURLOPT_HEADER, false);
       curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
+      $response = curl_exec($handler);
+      curl_close($handler);
+      if($isJson) {
+        $response = json_decode($response, true);
+      }
+
+      return $response;
+    }
+    public function post($url, $data = null, $isJson = false)
+    {
+      if($data) {
+        $data_str = '';
+        foreach($data as $key => $value) {
+          $data_str .= $key . '=' . urlencode($value) . '&';
+        }
+        rtrim($data_str, '&');
+      }
+      $handler = curl_init();
+      curl_setopt($handler, CURLOPT_URL, $url);
+      curl_setopt($handler, CURLOPT_HEADER, false);
+      curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($handler, CURLOPT_POST, count($data));
+      curl_setopt($handler, CURLOPT_POSTFIELDS, $data_str);
       $response = curl_exec($handler);
       curl_close($handler);
       if($isJson) {
