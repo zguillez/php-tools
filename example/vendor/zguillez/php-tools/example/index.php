@@ -3,4 +3,4 @@
   use Z\Tools;
 
   $tools = new Tools();
-  $tools->test('This is a test!');
+  $tools->insert('This is a test!');
