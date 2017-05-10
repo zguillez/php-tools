@@ -1,0 +1,20 @@
+{
+	"name": "zguillez/php-tools",
+	"description": "PHP module for common tools",
+	"keywords": [
+		"Php",
+		"CURL",
+		"webservice"
+	],
+	"license": "MIT",
+	"authors": [{
+		"name": "Guillermo de la Iglesia",
+		"email": "zguillez@gmail.com"
+	}],
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Z\\": "src/"
+		}
+	}
+}
