@@ -1,5 +1,6 @@
 {
   "require": {
-    "zguillez/php-tools": "^0.0.1"
+    "zguillez/php-tools": "^0.0.1",
+    "phpoffice/phpexcel": "^1.8"
   }
 }
