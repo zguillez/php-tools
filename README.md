@@ -17,7 +17,7 @@ PHP module for common tools
 	//packaje.json
 	{
         "require": {
-            "zguillez/php-tools": "^0.0.1"
+            "zguillez/php-tools": "^0.1.0"
         }
     }
 
@@ -49,6 +49,12 @@ Contributors are welcome, please fork and send pull requests! If you have any id
 Original code licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License) Open Source projects used within this project retain their original licenses.
 
 # Changelog
+
+### v0.1.0 (May 31, 2017) 
+
+* GET/POST curl
+* Database connect
+* CSV/EXCEL file export
 
 ### v0.0.1 (May 10, 2017) 
 

@@ -68,7 +68,7 @@
      */
     public function database($servername, $username, $password, $dbname)
     {
-      $this->conn = new mysqli($servername, $username, $password, $dbname);
+      $this->conn = new \mysqli($servername, $username, $password, $dbname);
       if($this->conn->connect_error) {
         die("Connection failed: " . $this->conn->connect_error);
       }
@@ -78,6 +78,18 @@
     public function sql($sql)
     {
       return $this->conn->query($sql);
+    }
+    public function sql2array($sql)
+    {
+      $result = $this->conn->query($sql);
+      $data   = [];
+      if($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $data[] = $row;
+        }
+      }
+
+      return $data;
     }
     public function sql2csv($filename, $sql, $schema = null)
     {
@@ -89,6 +101,17 @@
         }
       }
       $this->csv($filename, $data, $schema);
+    }
+    public function sql2excel($filename, $sql, $schema = null)
+    {
+      $result = $this->conn->query($sql);
+      $data   = [];
+      if($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $data[] = $row;
+        }
+      }
+      $this->excel($filename, $data, $schema, true);
     }
     /**
      * FILES
@@ -107,7 +130,7 @@
         }
       }
     }
-    public function excel($filename, $data = null, $schema = null)
+    public function excel($filename, $data = null, $schema = null, $issql = false)
     {
       header('Content-Type: application/vnd.ms-excel; charset=utf-8');
       header('Content-Disposition: attachment; filename=' . $filename . '.xlsx');
@@ -136,7 +159,11 @@
       }
       foreach($data as $row) {
         for($i = 0; $i < count($row); $i ++) {
-          $doc->getActiveSheet()->SetCellValue($cells[$i] . $index, $row[$i]);
+          if($schema && $issql) {
+            $doc->getActiveSheet()->SetCellValue($cells[$i] . $index, $row[$schema[$i]]);
+          } else {
+            $doc->getActiveSheet()->SetCellValue($cells[$i] . $index, $row[$i]);
+          }
         }
         $index ++;
       }
