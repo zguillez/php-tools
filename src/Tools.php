@@ -79,6 +79,12 @@
     {
       return $this->conn->query($sql);
     }
+    public function sql2lead($sql)
+    {
+      $this->conn->query($sql);
+
+      return $this->conn->insert_id;
+    }
     public function sql2array($sql)
     {
       $result = $this->conn->query($sql);
