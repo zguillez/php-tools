@@ -28,14 +28,6 @@ PHP module for common tools
 	$tools = new Tools();
 	$tools->test('This is a test!');
 
-# Example:
-
-	require 'vendor/autoload.php';
-	use Z\Tools;
-	
-	$tools = new Tools();
-	$tools->test('This is a test!');
-
 # Contributing and issues
 
 Contributors are welcome, please fork and send pull requests! If you have any ideas on how to make this project better then please submit an issue or send me an [email](mailto:mail@zguillez.io).
