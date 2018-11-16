@@ -1,4 +1,5 @@
 <?php
+
   namespace Z;
   class Tools
   {

@@ -1,9 +1,7 @@
 # php-tools
 
-[![Dependency Status](https://gemnasium.com/zguillez/php-tools.svg)](https://gemnasium.com/zguillez/php-tools)
-![](https://reposs.herokuapp.com/?path=zguillez/php-tools)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Join the chat at https://gitter.im/zguillez/php-tools](https://badges.gitter.im/zguillez/php-tools.svg)](https://gitter.im/zguillez/php-tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
 PHP module for common tools
 
@@ -24,9 +22,55 @@ PHP module for common tools
 
 	require 'vendor/autoload.php';
 	use Z\Tools;
-	
+
 	$tools = new Tools();
 	$tools->test('This is a test!');
+
+# Examples
+
+## HTTP/GET
+
+```
+$data  = ['nombre' => 'test', 'apellidos' => 'test', 'email' => 'test@test.com'];
+
+$result = $tools->get('https://dummy.webservice.com/json', $data, true);
+var_dump($result);
+```
+
+## HTTP/POST
+
+```
+$data  = ['nombre' => 'test', 'apellidos' => 'test', 'email' => 'test@test.com'];
+
+$result = $tools->post('https://dummy.webservice.com/json', $data, true);
+var_dump($result);
+```
+
+## EXCEL
+
+```
+$data = [[1, "a"], [2, "b"], [3, "c"], [4, "d"]];
+
+$tools->excel('test', $data, ['id', 'value']);
+```
+
+## DATABASE 2 EXCEL
+
+```
+$tools->database('***.***.***.***', 'user', '********', 'database');
+
+$data = $tools->sql2array('SELECT * FROM dummy_table');
+
+$tools->excel('test', $data, ['id', 'value', 'created_at'], true);
+```
+
+```
+$tools->sql2csv('test', 'SELECT * FROM dummy_table', ['id', 'value', 'created_at']);
+```
+
+```
+$tools->sql2excel('test2', 'SELECT * FROM dummy_table', ['id', 'value', 'created_at']);
+```
 
 # Contributing and issues
 
@@ -40,13 +84,13 @@ Original code licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License) Op
 
 # Changelog
 
-### v0.1.0 (May 31, 2017) 
+### v0.1.0 (May 31, 2017)
 
 * GET/POST curl
 * Database connect
 * CSV/EXCEL file export
 
-### v0.0.1 (May 10, 2017) 
+### v0.0.1 (May 10, 2017)
 
 * Initial implementation
 
