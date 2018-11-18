@@ -46,6 +46,16 @@ $result = $tools->post('https://dummy.webservice.com/json', $data, true);
 var_dump($result);
 ```
 
+## DATABASE
+
+```
+$tools->database('***.***.***.***', 'user', '********', 'database');
+
+$tools->sql('INSERT INTO dummy_table SET value=1']);
+
+leadid = $tools->sql2lead('INSERT INTO dummy_table SET value=1']);
+```
+
 ## EXCEL
 
 ```
@@ -57,8 +67,6 @@ $tools->excel('test', $data, ['id', 'value']);
 ## DATABASE 2 EXCEL
 
 ```
-$tools->database('***.***.***.***', 'user', '********', 'database');
-
 $data = $tools->sql2array('SELECT * FROM dummy_table');
 
 $tools->excel('test', $data, ['id', 'value', 'created_at'], true);
