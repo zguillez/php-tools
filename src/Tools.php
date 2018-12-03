@@ -144,10 +144,14 @@ class Tools
     for($i = 65; $i <= 90; $i ++) {
       $letras[] = chr($i);
     }
-    $total = count($data);
+    if($schema) {
+      $total = count($schema);
+    } else {
+      $total = 1000;
+    }
     for($i = 0; $i < $total; $i ++) {
       if($i < count($letras)) {
-        $cells[] = $letras[0] . $letras[$i];
+        $cells[] = $letras[$i];
       } else {
         $pag     = floor($i / count($letras));
         $letra   = $i - $pag * count($letras);
