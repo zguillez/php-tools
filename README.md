@@ -86,7 +86,7 @@ Contributors are welcome, please fork and send pull requests! If you have any id
 
 # License
 
-©2017 Zguillez.io
+©2018 Zguillez.io
 
 Original code licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License) Open Source projects used within this project retain their original licenses.
 
