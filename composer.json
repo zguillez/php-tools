@@ -2,19 +2,22 @@
   "name": "zguillez/php-tools",
   "description": "PHP module for common tools",
   "keywords": [
-    "Php",
-    "CURL",
+    "php",
+    "curl",
+    "mysql",
+    "mailgun",
     "webservice"
   ],
   "license": "MIT",
   "authors": [
     {
       "name": "Guillermo de la Iglesia",
-      "email": "zguillez@gmail.com"
+      "email": "mail@zguillez.io"
     }
   ],
   "require": {
-    "phpoffice/phpexcel": "^1.8"
+    "phpoffice/phpexcel": "^1.8",
+    "ext-curl": "*"
   },
   "autoload": {
     "psr-4": {
