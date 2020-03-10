@@ -6,13 +6,15 @@ class Tools
 {
   private $date;
   private $ip;
-  private $conn;
+  private $database;
+  private $http;
 
   //----------------------------------------------------------
   public function __construct()
   {
     $this->date = date("Y-m-d H:i:s");
     $this->ip = ($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 0;
+    $this->http = new Http();
   }
 
   //----------------------------------------------------------
@@ -26,51 +28,12 @@ class Tools
    */
   public function get($url, $data = null, $isJson = false)
   {
-    if ($data) {
-      foreach ($data as $key => $value) {
-        if (strpos($url, '?') === false) {
-          $url .= '?' . $key . '=' . urlencode($value);
-        } else {
-          $url .= '&' . $key . '=' . urlencode($value);
-        }
-      }
-    }
-    $handler = curl_init();
-    curl_setopt($handler, CURLOPT_URL, $url);
-    curl_setopt($handler, CURLOPT_HEADER, false);
-    curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($handler);
-    curl_close($handler);
-    if ($isJson) {
-      $response = json_decode($response, true);
-    }
-
-    return $response;
+    return $this->http->get($url, $data, $isJson);
   }
 
-  //----------------------------------------------------------
   public function post($url, $data = null, $isJson = false)
   {
-    if ($data) {
-      $data_str = '';
-      foreach ($data as $key => $value) {
-        $data_str .= $key . '=' . urlencode($value) . '&';
-      }
-      rtrim($data_str, '&');
-    }
-    $handler = curl_init();
-    curl_setopt($handler, CURLOPT_URL, $url);
-    curl_setopt($handler, CURLOPT_HEADER, false);
-    curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($handler, CURLOPT_POST, count($data));
-    curl_setopt($handler, CURLOPT_POSTFIELDS, $data_str);
-    $response = curl_exec($handler);
-    curl_close($handler);
-    if ($isJson) {
-      $response = json_decode($response, true);
-    }
-
-    return $response;
+    return $this->http->post($url, $data, $isJson);
   }
 
   /**---------------------------------------------------------
@@ -78,46 +41,15 @@ class Tools
    */
   public function database($servername, $username, $password, $dbname)
   {
-    $this->conn = new \mysqli($servername, $username, $password, $dbname);
-    if ($this->conn->connect_error) {
-      die("Connection failed: " . $this->conn->connect_error);
-    }
+    $this->database = new Database($servername, $username, $password, $dbname);
 
-    return $this->conn;
-  }
-
-  //----------------------------------------------------------
-  public function sql($sql)
-  {
-    return $this->conn->query($sql);
-  }
-
-  //----------------------------------------------------------
-  public function sql2lead($sql)
-  {
-    $this->conn->query($sql);
-
-    return $this->conn->insert_id;
-  }
-
-  //----------------------------------------------------------
-  public function sql2array($sql)
-  {
-    $result = $this->conn->query($sql);
-    $data = [];
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
-      }
-    }
-
-    return $data;
+    return $this->database;
   }
 
   //----------------------------------------------------------
   public function sql2csv($filename, $sql, $schema = null)
   {
-    $result = $this->conn->query($sql);
+    $result = $this->database->query($sql);
     $data = [];
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
@@ -130,7 +62,7 @@ class Tools
   //----------------------------------------------------------
   public function sql2excel($filename, $sql, $schema = null)
   {
-    $result = $this->conn->query($sql);
+    $result = $this->database->query($sql);
     $data = [];
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b897634bf690121061f7c3f1a331c07",
+    "content-hash": "5fbb00c827dc948e143862e0a4b57d26",
     "packages": [
         {
             "name": "phpoffice/phpexcel",
@@ -68,6 +68,44 @@
             ],
             "abandoned": "phpoffice/phpspreadsheet",
             "time": "2018-11-22T23:07:24+00:00"
+        },
+        {
+            "name": "zguillez/z-database",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zguillez/z-database.git",
+                "reference": "e1872d05faeba67692a938e86adc078fad308208"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zguillez/z-database/zipball/e1872d05faeba67692a938e86adc078fad308208",
+                "reference": "e1872d05faeba67692a938e86adc078fad308208",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Z\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guillermo de la Iglesia",
+                    "email": "mail@zguillez.io"
+                }
+            ],
+            "description": "PHP module for MySql database",
+            "keywords": [
+                "database",
+                "mysql",
+                "php"
+            ],
+            "time": "2020-03-09T23:57:33+00:00"
         }
     ],
     "packages-dev": [],

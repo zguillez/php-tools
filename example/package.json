@@ -1,7 +1,6 @@
 {
-  "devDependencies": {
-    "browser-sync": "latest",
-    "gulp": "latest",
-    "gulp-connect-php": "latest"
-  }
+  "scripts": {
+    "serve": "php -S localhost:8000"
+  },
+  "license": "MIT"
 }

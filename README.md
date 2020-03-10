@@ -32,35 +32,31 @@ PHP module for common tools
 
 ```
 $data  = ['nombre' => 'test', 'apellidos' => 'test', 'email' => 'test@test.com'];
-
 $result = $tools->get('https://dummy.webservice.com/json', $data, true);
-var_dump($result);
+$tools->test($result);
 ```
 
 ## HTTP/POST
 
 ```
 $data  = ['nombre' => 'test', 'apellidos' => 'test', 'email' => 'test@test.com'];
-
 $result = $tools->post('https://dummy.webservice.com/json', $data, true);
-var_dump($result);
+$tools->test($result);
 ```
 
 ## DATABASE
 
 ```
-$tools->database('***.***.***.***', 'user', '********', 'database');
-
-$tools->sql('INSERT INTO dummy_table SET value=1']);
-
-leadid = $tools->sql2lead('INSERT INTO dummy_table SET value=1']);
+$db = $tools->database('***.***.***.***', 'user', '********', 'database');
+$db->sql('INSERT INTO dummy_table SET value=1']);
+leadid = $db->sql2lead('INSERT INTO dummy_table SET value=1']);
+$tools->test($result);
 ```
 
 ## EXCEL
 
 ```
 $data = [[1, "a"], [2, "b"], [3, "c"], [4, "d"]];
-
 $tools->excel('test', $data, ['id', 'value']);
 ```
 
@@ -68,7 +64,6 @@ $tools->excel('test', $data, ['id', 'value']);
 
 ```
 $data = $tools->sql2array('SELECT * FROM dummy_table');
-
 $tools->excel('test', $data, ['id', 'value', 'created_at'], true);
 ```
 
@@ -86,11 +81,16 @@ Contributors are welcome, please fork and send pull requests! If you have any id
 
 # License
 
-©2018 Zguillez.io
+©2020 Zguillez.io
 
 Original code licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License) Open Source projects used within this project retain their original licenses.
 
 # Changelog
+
+### v1.0.0 (Mar 10, 2020)
+
+* z-database package
+* z-http package
 
 ### v0.1.0 (May 31, 2017)
 
