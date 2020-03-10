@@ -8,6 +8,7 @@ class Tools
   private $ip;
   private $database;
   private $http;
+  private $mailgun;
 
   //----------------------------------------------------------
   public function __construct()
@@ -44,6 +45,16 @@ class Tools
     $this->database = new Database($servername, $username, $password, $dbname);
 
     return $this->database;
+  }
+
+  /**---------------------------------------------------------
+   * MAILGUN
+   */
+  public function mailgun($domain, $apikey)
+  {
+    $this->mailgun = new Mailgun($domain, $apikey);
+
+    return $this->mailgun;
   }
 
   //----------------------------------------------------------

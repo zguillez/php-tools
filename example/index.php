@@ -17,4 +17,7 @@ $tools = new Z\Tools();
 //$tools->excel('test', $data, ['id', 'transaction_id'], true);
 //$tools->sql2csv('test', 'SELECT * FROM hasoffers', ['id', 'transaction_id']);
 //$tools->sql2excel('test2', 'SELECT * FROM hasoffers', ['id', 'transaction_id']);
-
+/** */
+$mail = $tools->mail('m.mydomain.com', 'key-****************************');
+$result = $mail->send("no_reply@mydomain.com", "dummy@gmail.com", "[test] z-mailgun", "this is a test...");
+var_dump($result);

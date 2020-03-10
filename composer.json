@@ -18,7 +18,8 @@
   "require": {
     "phpoffice/phpexcel": "^1.8",
     "zguillez/z-database": "^1.0",
-    "zguillez/z-http": "^1.0"
+    "zguillez/z-http": "^1.0",
+    "zguillez/z-mailgun": "^1.0"
   },
   "autoload": {
     "psr-4": {
